@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ page import="com.niu.news.dao.*"%>
 <%@ page import="com.niu.news.bean.*"%>
 <%@ page import="com.niu.news.dao.impl.*"%>
@@ -32,21 +33,14 @@
 		<%@include file="element/topic_left.html"%>
 	</div>
 	<ul>
-		<%
-			request.setCharacterEncoding("utf-8");
-			List<Topic> list = (ArrayList<Topic>) request.getAttribute("list");
-
-			for (Topic topic : list) {
-				int tid = topic.gettId();
-		%>
-		<li><%=topic.gettName()%>&nbsp;&nbsp;<a
-			href="newPages/topic_update.jsp?opr=update&tid=<%=tid%>&tName=<%=topic.gettName()%>">修改</a>&nbsp;&nbsp;
-			<a href="./topic?opr=del&tid=<%=tid%>">删除</a>
-		</li>
-		<%
-			}
-		%>
+		<c:forEach var="topic" items="${list }">
+			<li>${topic.tName}&nbsp;&nbsp;<a
+				href="newPages/topic_update.jsp?opr=update&tid=${topic.tId }&tName=${topic.tName}">修改</a>&nbsp;&nbsp;
+				<a href="./topic?opr=del&tid=${topic.tId }">删除</a>
+			</li>
+		</c:forEach>
 	</ul>
+
 
 
 

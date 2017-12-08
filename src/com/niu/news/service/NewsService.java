@@ -11,7 +11,6 @@ import com.niu.news.dao.impl.NewsDaoImpl;
 public class NewsService {
 	public void findNews(Page page) {
 		NewsDao nd = new NewsDaoImpl();
-
 		int pageNo = page.getCurPageNo();
 		int pageSize = page.getPageSize();
 		if (page.getTotleCount() > 0) {
