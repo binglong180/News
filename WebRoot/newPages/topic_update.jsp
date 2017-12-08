@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	String tid =request.getParameter("tid");
  	String tName=request.getParameter("tName");
    %>
-  <form method="post" action="/../news/util/topic_control.jsp?opr=update&tid=<%=tid%>">
+  <form method="post" action="topic?opr=update&tid=<%=tid%>">
   	<p>
   	<lable>请输入要修改后的主题名</lable>
   	<input type="text" name="tName"/>

@@ -26,6 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <div>
     	<%@include file="element/topic_left.html" %>
+    	<%
+    		request.getRequestDispatcher("/topic?opr=list").forward(request, response);
+    	 %>
     </div>
     
   </body>

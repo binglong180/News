@@ -35,7 +35,7 @@
 			}
 		%>
 	</div>
-	<form method="post" action="control.jsp"
+	<form method="post" action="./util/control.jsp"
 		id="regiterForm">
 		<p>
 			用户名：<input type="text" name="uName" id="uName" value='<%=(request.getAttribute("uName")==null ? "":request.getAttribute("uName")) %>'	`/>
@@ -48,7 +48,6 @@
 		<p />
 		<p>
 			<input type="submit" name="submit" value="注册" />
-			<%=request.getContextPath()%>
 		<p />
 	</form>
 

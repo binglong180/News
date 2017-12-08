@@ -30,6 +30,9 @@ public class TopicServlet extends HttpServlet {
 		String basePath = request.getScheme() + "://"
 				+ request.getServerName() + ":" + request.getServerPort()+contextPath;
 		String opr = request.getParameter("opr");
+		if(opr==null||opr.trim().equals("")){
+			opr="list";
+		}
 		if (opr.equals("list")) {
 			TopicDao td = new TopicDaoImpl();
 			List<Topic> list = td.getAllTopics();
@@ -37,7 +40,7 @@ public class TopicServlet extends HttpServlet {
 				request.setAttribute("list", list);
 			}
 			try {
-				request.getRequestDispatcher(contextPath+"/newPages/topic_list.jsp")
+				request.getRequestDispatcher("newPages/topic_list.jsp")
 						.forward(request, response);
 			} catch (ServletException e) {
 				// TODO Auto-generated catch block
@@ -56,19 +59,19 @@ public class TopicServlet extends HttpServlet {
 					td.addTopic(tName);
 
 					out.print("<script type='text/javascript'>"
-							+ "alert('修改成功');"
-							+ "location.href=\""+contextPath+"/util/topic_control.jsp?opr=list\";</script>");
+							+ "alert('添加成功');"
+							+ "location.href='./topic?opr=list';</script>");
 				} else {
 
 					out.print("<script type='text/javascript'>"
 							+ "alert('当前主题已存在！请输入不同的主题');"
-							+ "location.href='"+ contextPath+"/newPages/topic_add.jsp';</script>");
+							+ "location.href='./topic?opr=list';</script>");
 
 				}
 			} else {
 				out.print("<script type='text/javascript'>"
 						+ "alert('当前无输入主题！请输入主题');"
-						+ "location.href='"+ contextPath+"/newPages/topic_add.jsp';</script>");
+						+ "location.href='./topic?opr=list';</script>");
 
 			}
 		} else if (opr.equals("del")) {
@@ -82,19 +85,19 @@ public class TopicServlet extends HttpServlet {
 				if (result > 0) {
 					out.print("<script type='text/javascript'>"
 							+ "alert('删除主题成功！');"
-							+ "location.href='util/topic_control.jsp?opr=list';</script>");
+							+ "location.href='./topic?opr=list';</script>");
 
 				} else {
 					out.print("<script type='text/javascript'>"
 							+ "alert('未删除主题！请稍后重试！');"
-							+ "location.href='util/topic_control.jsp?opr=list';</script>");
+							+ "location.href='./topic?opr=list';</script>");
 
 				}
 			} else {
 
 				out.print("<script type='text/javascript'>"
 						+ "alert('该主题下有文章，未删除主题！');"
-						+ "location.href='util/topic_control.jsp?opr=list';</script>");
+						+ "location.href='./topic?opr=list';</script>");
 
 			}
 
@@ -113,18 +116,18 @@ public class TopicServlet extends HttpServlet {
 					if (result > 0) {
 						out.print("<script type='text/javascript'>"
 								+ "alert('主题修改成功！');"
-								+ "location.href='../news/util/topic_control.jsp?opr=list';</script>");
+								+ "location.href='./topic?opr=list';</script>");
 
 					} else {
 						out.print("<script type='text/javascript'>"
 								+ "alert('主题修改失敗！');"
-								+ "location.href='../news/util/topic_control.jsp?opr=list';</script>");
+								+ "location.href='./topic?opr=list';</script>");
 					}
 				} else {
 
 					out.print("<script type='text/javascript'>"
 							+ "alert('当前主题以存在！请输入不同的主题');"
-							+ "location.href='../news/util/topic_control.jsp?opr=list';</script>");
+							+ "location.href='./topic?opr=list';</script>");
 
 				}
 			}

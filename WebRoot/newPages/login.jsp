@@ -1,7 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page import="com.niu.news.bean.User"%>
-<%@ page import="com.niu.news.dao.impl.UserDaoImpl"%>
-<%@ page import="com.niu.news.dao.UserDao"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -14,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'loginConfirm.jsp' starting page</title>
+<title>My JSP 'login.jsp' starting page</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -28,18 +25,17 @@
 </head>
 
 <body>
-	<%
-		request.setCharacterEncoding("utf-8");
-		String uName = request.getParameter("uName");
-		String uPassword = request.getParameter("uPassword");
-		User user = new User(uName, uPassword);
-		UserDao userDao = new UserDaoImpl();
-		int result = userDao.login(user);
-		if (result > 0) {
-			response.sendRedirect("succesed.jsp");
-		} else {
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-		}
-	%>
+	
+	<form method="post" action="<%=path %>/util/loginConfirm.jsp" id="regiterForm">
+		<p>
+			<input type="text" name="uName" />
+		<p />
+		<p>
+			<input type="password" name="uPassword" />
+		<p />
+		<p>
+			<input type="submit" name="submit" value="登录" />
+		<p />
+	</form>
 </body>
 </html>

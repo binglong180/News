@@ -40,8 +40,8 @@
 				int tid = topic.gettId();
 		%>
 		<li><%=topic.gettName()%>&nbsp;&nbsp;<a
-			href="/../news/newPages/topic_update.jsp?opr=update&tid=<%=tid%>&tName=<%=topic.gettName()%>">修改</a>&nbsp;&nbsp;
-			<a href="/../news/util/topic_control.jsp?opr=del&tid=<%=tid%>">删除</a>
+			href="newPages/topic_update.jsp?opr=update&tid=<%=tid%>&tName=<%=topic.gettName()%>">修改</a>&nbsp;&nbsp;
+			<a href="./topic?opr=del&tid=<%=tid%>">删除</a>
 		</li>
 		<%
 			}

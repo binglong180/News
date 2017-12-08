@@ -29,7 +29,8 @@
 </head>
 
 <body>
-
+	<a href="newPages/login.jsp">登录</a>
+	<a href="newPages/register.jsp">注册</a>
 	<div style="float:left">
 		<div class="sidebar">
 			<h1>
@@ -124,10 +125,11 @@
 			<%
 				if (pageObj.getCurPageNo() != 1) {
 			%>
-			<!-- 在href 跳转servlet的时候要./到servlet的根目录 -->
+			
 			<a href="./NewServlet?indexPage=1">首页</a> <a
 				href="./NewServlet?indexPage=<%=pageObj.getCurPageNo() - 1%>">上一页</a>
 			<%
+			//在href 跳转servlet的时候要./到servlet的根目录 
 				} else {
 			%>
 			<a style="color:gray" href="javascript:void(0)">首页</a> <a
