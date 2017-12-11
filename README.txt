@@ -25,5 +25,8 @@ $.ajax与JSON处理页面
 1、在相应的jsp页面中编写$.ajax读取JSON数据
 2、在相应的servletJSON数据格式的数据并发送给jsp页面（out.print(data)）
 
-
+ajax交互版本说明：
+1、使用$.ajax()技术{"data":"html"}
+2、servlet中直接把html代码进行传递
+3、而jsp只要直接显示就可以了
 
