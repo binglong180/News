@@ -47,19 +47,7 @@
 <script type="text/javascript">
 	initNews();
 	function initNews() {
-		$.ajax({
-			"url" : "topic",
-			"type" : "GET",
-			"data" : "opr=list",
-			"dataType" : "html",
-			"success" : processNewsList
-		});
-
+		$("#opt_area>ul").load("topic","opr=list");
 	}
-	function processNewsList(data) {
-		var $topicList = $("#opt_area>ul").empty();
-		$topicList.append(data);
-	}
-	
 </script>
 </html>

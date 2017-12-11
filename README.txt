@@ -36,4 +36,6 @@ showTopic.jsp版本
 2、ajax通过data：html直接接收显示
 3、也就是说以后想要显示的页面可以直接EL，jstl技术编写好哪里需要可以发送到哪减少了复杂的html的拼接
 
-
+4、news03.02
+版本：.load
+1、在jsp页面中直接使用.load请求页面（html）更加方便、简洁
