@@ -18,6 +18,7 @@ import com.niu.news.dao.impl.TopicDaoImpl;
 
 public class TopicServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+		String path = request.getContextPath();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = null;
 		try {
@@ -36,6 +37,16 @@ public class TopicServlet extends HttpServlet {
 		if (opr.equals("list")) {
 			TopicDao td = new TopicDaoImpl();
 			List<Topic> list = td.getAllTopics();
+			request.getSession().setAttribute("list", list);
+			try {
+				request.getRequestDispatcher("/newPages/showTopic.jsp").forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// if (list != null) {
 			// out.print(list);
 			// request.setAttribute("list", list);
@@ -51,13 +62,13 @@ public class TopicServlet extends HttpServlet {
 			// e.printStackTrace();
 			// }
 			// 拼装JSON数组格式的响应模式
-			StringBuffer topicJSON = new StringBuffer();
-			Topic topic = null;
-			for (int i = 0;i<list.size();i++) {
-				topic = list.get(i);
-				topicJSON.append("<li>" + topic.gettName() + "<a href='#'>修改</a>"+ "</li>");
-			}
-			out.print(topicJSON);
+//			StringBuffer topicJSON = new StringBuffer();
+//			Topic topic = null;
+//			for (int i = 0;i<list.size();i++) {
+//				topic = list.get(i);
+//				topicJSON.append("<li>" + topic.gettName() + "<a href='#'>修改</a>"+ "</li>");
+//			}
+//			out.print(topicJSON);
 		} else if (opr.equals("add")) {
 			String tName = request.getParameter("tName");
 			if (!(tName == null || tName.trim().equals(""))) {
