@@ -47,24 +47,18 @@
 <script type="text/javascript">
 	initNews();
 	function initNews() {
-		alert(111);
 		$.ajax({
-			"url" : "<%=path%>/topic",
+			"url" : "topic",
 			"type" : "GET",
 			"data" : "opr=list",
-			"dataType" : "json",
+			"dataType" : "html",
 			"success" : processNewsList
 		});
-		alert(2222);
 
 	}
 	function processNewsList(data) {
 		var $topicList = $("#opt_area>ul").empty();
-		$topicList.after("<li>1111111111</li>");
-		for ( var i = 0; i < data.length; i++) {
-			$topicList.append("<li>" + data[i].tName + "<a href='#'>修改</a>"
-					+ "</li>");
-		}
+		$topicList.append(data);
 	}
 	
 </script>

@@ -51,18 +51,12 @@ public class TopicServlet extends HttpServlet {
 			// e.printStackTrace();
 			// }
 			// 拼装JSON数组格式的响应模式
-			StringBuffer topicJSON = new StringBuffer("[");
+			StringBuffer topicJSON = new StringBuffer();
 			Topic topic = null;
-			for (int i = 0;;) {
+			for (int i = 0;i<list.size();i++) {
 				topic = list.get(i);
-				topicJSON.append("{\"tName\":\"" + topic.gettName() + "\"}");
-				if (++i == list.size()) {
-					break;
-				} else {
-					topicJSON.append(",");
-				}
+				topicJSON.append("<li>" + topic.gettName() + "<a href='#'>修改</a>"+ "</li>");
 			}
-			topicJSON.append("]");
 			out.print(topicJSON);
 		} else if (opr.equals("add")) {
 			String tName = request.getParameter("tName");
