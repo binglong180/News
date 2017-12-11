@@ -18,3 +18,12 @@ jstl通用标签
 </c:choce>
 
 <c:foreach></c:foreach>
+
+
+版本说明
+$.ajax与JSON处理页面
+1、在相应的jsp页面中编写$.ajax读取JSON数据
+2、在相应的servletJSON数据格式的数据并发送给jsp页面（out.print(data)）
+
+
+

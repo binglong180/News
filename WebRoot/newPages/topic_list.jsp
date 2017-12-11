@@ -32,17 +32,40 @@
 	<div>
 		<%@include file="element/topic_left.html"%>
 	</div>
-	<ul>
-		<c:forEach var="topic" items="${list }">
-			<li>${topic.tName}&nbsp;&nbsp;<a
-				href="newPages/topic_update.jsp?opr=update&tid=${topic.tId }&tName=${topic.tName}">修改</a>&nbsp;&nbsp;
-				<a href="./topic?opr=del&tid=${topic.tId }">删除</a>
-			</li>
-		</c:forEach>
-	</ul>
+	<div id="opt_area">
+		<ul>
+
+		</ul>
+	</div>
+
 
 
 
 
 </body>
+<script type="text/javascript" src="<%=path%>/js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	initNews();
+	function initNews() {
+		alert(111);
+		$.ajax({
+			"url" : "<%=path%>/topic",
+			"type" : "GET",
+			"data" : "opr=list",
+			"dataType" : "json",
+			"success" : processNewsList
+		});
+		alert(2222);
+
+	}
+	function processNewsList(data) {
+		var $topicList = $("#opt_area>ul").empty();
+		$topicList.after("<li>1111111111</li>");
+		for ( var i = 0; i < data.length; i++) {
+			$topicList.append("<li>" + data[i].tName + "<a href='#'>修改</a>"
+					+ "</li>");
+		}
+	}
+	
+</script>
 </html>

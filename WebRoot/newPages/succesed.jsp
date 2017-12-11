@@ -21,6 +21,6 @@
   
   <body>
     <h2>登录成功</h2>
-    <%@ include file="admin.jsp" %>
+    <%@ include file="topic_list.jsp" %>
   </body>
 </html>

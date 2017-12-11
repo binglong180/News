@@ -27,29 +27,43 @@ public class TopicServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		String contextPath = request.getContextPath();
-		String basePath = request.getScheme() + "://"
-				+ request.getServerName() + ":" + request.getServerPort()+contextPath;
+		String basePath = request.getScheme() + "://" + request.getServerName()
+				+ ":" + request.getServerPort() + contextPath;
 		String opr = request.getParameter("opr");
-		if(opr==null||opr.trim().equals("")){
-			opr="list";
+		if (opr == null || opr.trim().equals("")) {
+			opr = "list";
 		}
 		if (opr.equals("list")) {
 			TopicDao td = new TopicDaoImpl();
 			List<Topic> list = td.getAllTopics();
-			if (list != null) {
-				request.setAttribute("list", list);
+			// if (list != null) {
+			// out.print(list);
+			// request.setAttribute("list", list);
+			// }
+			// try {
+			// request.getRequestDispatcher("newPages/topic_list.jsp")
+			// .forward(request, response);
+			// } catch (ServletException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// } catch (IOException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
+			// 拼装JSON数组格式的响应模式
+			StringBuffer topicJSON = new StringBuffer("[");
+			Topic topic = null;
+			for (int i = 0;;) {
+				topic = list.get(i);
+				topicJSON.append("{\"tName\":\"" + topic.gettName() + "\"}");
+				if (++i == list.size()) {
+					break;
+				} else {
+					topicJSON.append(",");
+				}
 			}
-			try {
-				request.getRequestDispatcher("newPages/topic_list.jsp")
-						.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+			topicJSON.append("]");
+			out.print(topicJSON);
 		} else if (opr.equals("add")) {
 			String tName = request.getParameter("tName");
 			if (!(tName == null || tName.trim().equals(""))) {
